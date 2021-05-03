@@ -1,10 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import codecs
 import os
 import re
 import sys
 from setuptools import setup
+
+
+def read(fname):
+    file_path = os.path.join(os.path.dirname(__file__), fname)
+    return codecs.open(file_path, encoding='utf-8').read()
 
 
 def get_version(*file_paths):
@@ -46,7 +52,7 @@ def is_requirement(line):
     return line and not line.startswith(('-r', '#', '-e', 'git+', '-c'))
 
 
-VERSION = get_version('warnings_report', '__init__.py')
+VERSION = get_version('__init__.py')
 
 if sys.argv[-1] == 'tag':
     print("Tagging the version on github:")
